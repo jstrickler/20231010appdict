@@ -1,0 +1,9 @@
+cython
+mypy
+numba
+paramiko
+pylint
+pymongo
+pytest
+pytest-mock
+requests
