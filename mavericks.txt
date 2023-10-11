@@ -1,0 +1,10 @@
+George|Washington|no party
+John|Adams|Federalist
+Thomas|Jefferson|Democratic - Republican
+James|Madison|Democratic - Republican
+James|Monroe|Democratic - Republican
+John Quincy|Adams|Democratic - Republican
+William Henry|Harrison|Whig
+John|Tyler|Whig
+Zachary|Taylor|Whig
+Millard|Fillmore|Whig
