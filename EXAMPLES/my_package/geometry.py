@@ -11,6 +11,11 @@ import math   # load math.py
 
 PI = math.pi
 
+class duck:
+    pass
+
+DUCKS = ['merganser', 'wood', 'Donald', 'Daffy']
+
 def circle_area(diameter):
     """
     Compute the area of a circle from a given diameter
@@ -40,7 +45,7 @@ def square_area(side):
     """
     return side ** 2
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # if I'm a script, do this:
     area1 = square_area(15)
     print(f"area1: {area1}")
     

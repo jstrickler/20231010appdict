@@ -1,4 +1,4 @@
-from geometry import circle_area, rectangle_area, square_area
+from my_package.geometry import circle_area, rectangle_area, square_area
 
 a1 = circle_area(8)
 a2 = rectangle_area(10, 12)
