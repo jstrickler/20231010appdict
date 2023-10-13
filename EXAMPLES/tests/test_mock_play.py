@@ -18,6 +18,7 @@ m2 = Mock()  # Create generic mock object
 m2.spam('a', 'b')  # Call fake methods on mock object
 m2.ham('wombat')  # Call fake methods on mock object
 m2.eggs(1, 2, 3)  # Call fake methods on mock object
+m2.telvin("I", "LOVE", "PYTHON")
 
 print("mock calls:", m2.mock_calls)  # Mock object remembers all calls
 
