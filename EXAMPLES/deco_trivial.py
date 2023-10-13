@@ -9,6 +9,9 @@ x = void(name)  # decorate 'name', which is now 42, not a string
 def hello():
     print("Hello, world")
 
+@spam
+@bar
+@foo
 @void  # decorate howdy() function
 def howdy():
     print("Howdy, world")

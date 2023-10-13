@@ -1,18 +1,21 @@
 
 
-class debugger():  # class implementing decorator
+class function_call_tracker():  # class implementing decorator
 
-    function_calls = []
+    FUNCTION_CALLS = []
 
     def __init__(self, func):  # original function passed into decorator's constructor
         self._func = func
 
-    def __call__(self, *args, **kwargs):  # __call__() is replacement function
+    def yell(self):
+        print("YAHOOOOOOOOOOOO")
+
+    def __call__(self, *args, **kwargs):  # __call__() IS replacement function
 
 
         result = self._func(*args, **kwargs)  # call the original function
 
-        self.function_calls.append(  # add function name and arguments to saved list
+        self.FUNCTION_CALLS.append(  # add function name and arguments to saved list
             (self._func.__name__, args, kwargs, result)
         )
 
@@ -20,16 +23,18 @@ class debugger():  # class implementing decorator
 
     @classmethod
     def get_calls(cls): # define method to get saved function call information
-        return cls.function_calls
+        return cls.FUNCTION_CALLS
 
 
-@debugger  # apply debugger to function
+@function_call_tracker  # apply debugger to function
 def hello(greeting, whom="world"):
     print(f"{greeting}, {whom}")
     return greeting
 
+# hello = function_call_tracker(hello) 
 
-@debugger  # apply debugger to function
+
+@function_call_tracker  # apply debugger to function
 def bark(bark_word, *, repeat=2):
     print(f"{bark_word * repeat}! ")
     return bark_word
@@ -37,6 +42,9 @@ def bark(bark_word, *, repeat=2):
 
 hello('hello', 'world')  # call replacement function
 print()
+
+hello.yell()
+
 
 hello('hi', 'Earth')
 print()
@@ -51,5 +59,5 @@ hello('hey', 'you')
 
 print('-' * 60)
 
-for i, info in enumerate(debugger.get_calls(), 1):  # display function call info from class
+for i, info in enumerate(function_call_tracker.get_calls(), 1):  # display function call info from class
     print(f"{i:2d}. {info[0]:10s} {info[1]!s:20s} {info[2]!s:20s} {info[3]!s}")
