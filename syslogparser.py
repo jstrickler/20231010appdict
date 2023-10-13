@@ -1,4 +1,5 @@
 import re
+from collections import namedtuple
 
 # sample entry
 # Oct  8 00:01:06 parallels-Parallels-Virtual-Platform avahi-daemon[737]: Registering new address record for 10.2 11.55.7 on enp0s5.IPv4.
@@ -7,11 +8,13 @@ RE_ENTRY = r"""
     (?P<month>[A-Z][a-z]{2})\s+(?P<day>\d+)\s+   # date
     (?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})\s+  # timestamp
     (?P<hostname>\S+?)\s+ # hostname
-    (?P<process_name>.*?)\[(?P<PID>\d+)\]:\s+  # process name/PID
+    (?P<process_name>.*?)\[(?P<pid>\d+)\]:\s+  # process name/PID
     (?P<message>.*)  # message
 """  
 
 RE_SUB_ENTRY = r"\s"
+
+Entry = namedtuple("Entry", "month day hour minute second hostname process_name pid message")
 
 class SyslogParser:
     def __init__(self, sys_log_path):
@@ -55,6 +58,8 @@ class SyslogParser:
         entry = ' '.join(self._line_list)
         m = self._re_entry.match(entry)
         if m:
+            # Entry(month=value, day=value, hour=value, ... message=somevalue)
+            return Entry(**m.groupdict())  # converts {'a': 1, 'b': 2} into (a=1, b=2)
             return m.groupdict()
         else:
             raise ValueError("Unable to parse entry")

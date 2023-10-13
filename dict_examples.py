@@ -54,7 +54,7 @@ for code, city in airports.items():
 print('-' * 60)
 
 for code, city in sorted(airports.items()):
-    print(code, city)
+    print(f"code: {code}   city: {city}")
 print('-' * 60)
 
 print(f"airports.items(): {airports.items()}")
